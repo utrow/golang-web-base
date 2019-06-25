@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/go/Dockerfile
+      args:
+        - APP_ENV=${APP_ENV}
+        - GIT_AUTHOR=${GIT_AUTHOR}
+        - GIT_REPOSITORY=${GIT_REPOSITORY}
+    volumes:
+      - ./:/go/src/github.com/${GIT_AUTHOR}/${GIT_REPOSITORY}
+    ports:
+      - ${APP_PORT}:8080

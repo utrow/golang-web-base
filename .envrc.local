@@ -1,0 +1,4 @@
+export GIT_AUTHOR=utrow
+export GIT_REPOSITORY=golang-web-base
+export APP_ENV=local
+export APP_PORT=8088
