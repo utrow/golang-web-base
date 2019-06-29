@@ -2,6 +2,8 @@ package service
 
 import (
 	"errors"
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"os"
 )
@@ -22,8 +24,11 @@ func GetDBConfig() (string, string) {
 func CreateConnection() (*gorm.DB, error) {
 	db, err := gorm.Open(GetDBConfig())
 	if err != nil {
+		fmt.Println(err)
 		return nil, errors.New("DBコネクションの生成に失敗しました")
 	}
+
+	fmt.Println("[GORM] Database Connected.")
 
 	if os.Getenv("APP_ENV") == "local" {
 		db.Debug()

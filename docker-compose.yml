@@ -8,6 +8,13 @@ services:
         - APP_ENV=${APP_ENV}
         - GIT_AUTHOR=${GIT_AUTHOR}
         - GIT_REPOSITORY=${GIT_REPOSITORY}
+    environment:
+      - APP_ENV=${APP_ENV}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
     volumes:
       - ./:/go/src/github.com/${GIT_AUTHOR}/${GIT_REPOSITORY}
     ports:
