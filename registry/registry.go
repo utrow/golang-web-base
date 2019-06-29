@@ -25,5 +25,5 @@ func NewRegistry(db *gorm.DB, logger *log.Logger) Registry {
 
 func (r *registry) NewController() controller.Controller {
 	it := usecase.NewInteractor()
-	return controller.NewController(it)
+	return controller.NewController(it, *r.logger)
 }

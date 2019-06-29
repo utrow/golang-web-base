@@ -10,6 +10,7 @@ import (
 func (ctr *controller) GetPing(c *gin.Context) {
 	var input in.GetPing
 	if c.BindQuery(&input) != nil {
+		ctr.logger.Println(out.ErrInternal, input)
 		c.JSON(500, out.ErrorResponse{
 			Message: out.ErrInternal,
 		})
@@ -25,6 +26,7 @@ func (ctr *controller) GetPing(c *gin.Context) {
 
 	output, err := ctr.usecase.Ping.Get(&input)
 	if err != nil {
+		ctr.logger.Println(out.ErrInternal, err)
 		c.JSON(500, out.ErrorResponse{
 			Message: out.ErrInternal,
 		})
