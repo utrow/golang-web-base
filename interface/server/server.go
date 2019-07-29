@@ -21,8 +21,15 @@ func Launch() error {
 	controller := r.NewController()
 	server := gin.Default()
 
+	server.Use(Cors)
+
 	router.NewRouter(server, controller)
 
 	// listen and serve on 0.0.0.0:8080
 	return server.Run()
+}
+
+func Cors(c *gin.Context) {
+	c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
+	c.Next()
 }

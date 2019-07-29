@@ -3,6 +3,7 @@ package registry
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/utrow/golang-web-base/application/usecase"
+	"github.com/utrow/golang-web-base/domain/repository"
 	"github.com/utrow/golang-web-base/interface/controller"
 	"log"
 )
@@ -24,6 +25,6 @@ func NewRegistry(db *gorm.DB, logger *log.Logger) Registry {
 }
 
 func (r *registry) NewController() controller.Controller {
-	it := usecase.NewInteractor()
+	it := usecase.NewInteractor(repository.NewRepository(r.db))
 	return controller.NewController(it, *r.logger)
 }
